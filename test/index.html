@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>jquery.ObjectFit Test Suite</title>
+
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="http://code.jquery.com/qunit/git/qunit.js"></script>
+
+	<script type="text/javascript" src="../jquery.object-fit.js"></script>
+
+	<style>
+		.container {
+			background-color: red;
+			margin: 10px;
+			float: left;
+
+			/* flexbox, por favor */
+			display: -webkit-box;
+			-webkit-box-orient: horizontal;
+			-webkit-box-pack: center;
+			-webkit-box-align: center;
+
+			display: -moz-box;
+			-moz-box-orient: horizontal;
+			-moz-box-pack: center;
+			-moz-box-align: center;
+
+			display: box;
+			box-orient: horizontal;
+			box-pack: center;
+			box-align: center;
+		}
+
+		#container1 {
+			height: 200px;
+			width: 200px;
+		}
+
+		#container2 {
+			height: 100px;
+			width: 200px;
+		}
+
+		.object {
+			height: 480px;
+			width: 640px;
+			background-color: rgba(0, 255, 0, 0.5);
+		}
+	</style>
+
+	<script>
+		$(function() {
+
+			$('.object').objectFit();
+
+		});
+	</script>
+</head>
+<body>
+	<h1 id="qunit-header">jquery.ObjectFit Test Suite</h1>
+  <h2 id="qunit-banner"></h2>
+  <div id="qunit-testrunner-toolbar"></div>
+  <h2 id="qunit-userAgent"></h2>
+
+  <ol id="qunit-tests"></ol>
+  <div id="mod-output"></div>
+
+	<div id="container1" class="container">
+		<div class="object"></div>
+	</div>
+
+	<div id="container2" class="container">
+			<div class="object"></div>
+	</div>
+
+</body>
+</html>
