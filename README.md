@@ -19,6 +19,6 @@ Originally by [Schmidsi](https://github.com/schmidsi/jquery-object-fit) and re-w
 
 To do:
 ------
-*Add an object-position polyfill
-*Make the code run when the browser window re-sizes
-*Clarify the tests are correct against the spec, specifically Opera's implementation
+* Add an object-position polyfill
+* Make the code run when the browser window re-sizes
+* Clarify the tests are correct against the spec, specifically Opera's implementation
