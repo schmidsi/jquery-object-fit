@@ -16,3 +16,9 @@ $('.selector').objectFit('cover');
 Authors:
 ------
 Originally by [Schmidsi](https://github.com/schmidsi/jquery-object-fit) and re-worked by [steveworkman](https://github.com/steveworkman/jquery-object-fit)
+
+To do:
+------
+*Add an object-position polyfill
+*Make the code run when the browser window re-sizes
+*Clarify the tests are correct against the spec, specifically Opera's implementation
