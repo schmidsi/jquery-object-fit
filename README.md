@@ -15,6 +15,15 @@ $('.selector').objectFit('cover');
 ```
 Image sizes are now re-calculated for the given selectors on browser re-size without you having to do anything.
 
+Similarities to box-sizing: cover/contain:
+------
+Whilst the syntax for box-sizing and object-fit are identical, and their purpose is the same, the specs for each differ in a very important way:
+* box-sizing will re-size to fit the containing object by default
+* object-fit requires a width or height to re-size the media
+
+This can be accomplished using min/max-width/height, but don't just expect the images to re-size themselves correctly.
+
+In future versions of this polyfill, I'll be adding the ability to behave like box-sizing, or like the specified implementation.
 
 Authors:
 ------
@@ -23,4 +32,5 @@ Originally by [Schmidsi](https://github.com/schmidsi/jquery-object-fit) and re-w
 To do:
 ------
 * Add an object-position polyfill
-* Clarify the tests are correct against the spec, specifically Opera's implementation
+* Implement a switch to enable/disable box-sizing style behaviour
+* Add support for all other media types: <video>, <svg> <canvas> and <embed>
