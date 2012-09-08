@@ -17,14 +17,8 @@
 
 (function($, window, document) {
 
-	var resizeTimer, toResize = [];
-
-	/**
-     * Create our "modernizr" element that we do most feature tests on.
-     */
-    var mod = 'modernizr',
-    modElem = document.createElement(mod),
-    mStyle = modElem.style;
+	var resizeTimer, toResize = [],
+    	mStyle = document.createElement('modernizr').style;
 
 	function contains( str, substr ) {
 	    return !!~('' + str).indexOf(substr);
@@ -55,7 +49,7 @@
 		// default type is "contain"
 		var type = type || 'contain';
 		var supportsObjectFit = testForObjectFit();
-		console.log(supportsObjectFit);
+		
 		return this.each(function() {
 			if (supportsObjectFit) {
 				$(this).css('object-fit', type);
