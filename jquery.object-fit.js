@@ -19,38 +19,43 @@
 
 	var resizeTimer, toResize = [];
 
+	/**
+     * Create our "modernizr" element that we do most feature tests on.
+     */
+    var mod = 'modernizr',
+    modElem = document.createElement(mod),
+    mStyle = modElem.style;
+
+	function contains( str, substr ) {
+	    return !!~('' + str).indexOf(substr);
+	}
+
+	function testProps( props, prefixed ) {
+	    for ( var i in props ) {
+	        var prop = props[i];
+	        if ( !contains(prop, "-") && mStyle[prop] !== undefined ) {
+	            return prefixed == 'pfx' ? prop : true;
+	        }
+	    }
+	    return false;
+	}
+
 	var testForObjectFit = function() {
 		// Borrowed from Modernizr
-		var elem = document.createElement('div'),
-			body = document.body,
-			fakeBody = body ? body : document.createElement('body'),
-			elemId = "dObjectFit";
-		elem.id = elemId;
+		var prop = 'objectFit', 
+		omPrefixes = 'Webkit Moz O ms',
+		cssomPrefixes = omPrefixes.split(' '),
+		ucProp  = prop.charAt(0).toUpperCase() + prop.slice(1),
+		props   = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
 
-		var style = ['&#173;','<style id="sObjectFit">#', elemId, '{-o-object-fit:cover; -webkit-object-fit:cover; -ms-object-fit:cover; -moz-object-fit:cover; object-fit:cover;}</style>'].join('');
-
-		(body ? elem : fakeBody).innerHTML += style;
-		fakeBody.appendChild(elem);
-		if ( !body ) {
-			//avoid crashing IE8, if background image is used
-			fakeBody.style.background = "";
-			docElement.appendChild(fakeBody);
-		}
-
-		var test = window.getComputedStyle ? window.getComputedStyle( elem, null ) : elem.currentStyle;
-				
-		var res = (test.objectFit == 'cover') || (test.OObjectFit == 'cover'); // to cover-off Opera
-
-		// If this is done after page load we don't want to remove the body so check if body exists
-		!body ? fakeBody.parentNode.removeChild(fakeBody) : elem.parentNode.removeChild(elem);
-		return res;
+		return testProps(props);
 	};
 	
 	var doObjectFit = function(type) {
 		// default type is "contain"
 		var type = type || 'contain';
 		var supportsObjectFit = testForObjectFit();
-
+		console.log(supportsObjectFit);
 		return this.each(function() {
 			if (supportsObjectFit) {
 				$(this).css('object-fit', type);
