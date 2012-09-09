@@ -17,32 +17,24 @@
 
 (function($, window, document) {
 
-	var resizeTimer, toResize = [],
-    	mStyle = document.createElement('modernizr').style;
-
-	function contains( str, substr ) {
-	    return !!~('' + str).indexOf(substr);
-	}
-
-	function testProps( props, prefixed ) {
-	    for ( var i in props ) {
-	        var prop = props[i];
-	        if ( !contains(prop, "-") && mStyle[prop] !== undefined ) {
-	            return prefixed == 'pfx' ? prop : true;
-	        }
-	    }
-	    return false;
-	}
+	var resizeTimer, toResize = [];
 
 	var testForObjectFit = function() {
 		// Borrowed from Modernizr
-		var prop = 'objectFit', 
+    	var mStyle = document.createElement('modernizr').style,
+		prop = 'objectFit', 
 		omPrefixes = 'Webkit Moz O ms',
 		cssomPrefixes = omPrefixes.split(' '),
 		ucProp  = prop.charAt(0).toUpperCase() + prop.slice(1),
 		props   = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
 
-		return testProps(props);
+		for ( var i in props ) {
+	        var prop = props[i];
+	        if ( !!~('' + prop).indexOf("-") && mStyle[prop] !== undefined ) {
+	            return prefixed == 'pfx' ? prop : true;
+	        }
+	    }
+	    return false;
 	};
 	
 	var doObjectFit = function(type) {
