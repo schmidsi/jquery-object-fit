@@ -8,7 +8,7 @@
 // usage:
 // ------
 // ```
-// $('.selector').objectFit(type);
+// $('.selector').objectFit({type: 'contain', hideOverflow: true});
 // ```
 //
 // implemented types:
@@ -53,8 +53,14 @@
 		});
 	};
 
-	var doResize = function(elem, type) {
-		toResize.push({elem: elem, type:type});
+	var doResize = function(elem, params) {
+		var type = typeof(params) === 'string' ? params : params.type,
+			hideOverflow = params.hideOverflow === undefined ? true : params.hideOverflow;
+
+			console.log(hideOverflow);
+
+		// Cache the resize request
+		toResize.push({elem: elem, params: {type:type, hideOverflow: hideOverflow}});
 		// Find the first block level element, as we need the containing element, not just the next one up
 		function findParentRatio(jqObject) {
 			var p = jqObject.parent(),
@@ -94,18 +100,18 @@
 					}
 				}
 				else if (type === 'cover') {
-					// If the image is bigger in both dimensions than the parent, do nothing
-					if (parent.width <= pic_real_width && parent.height <= pic_real_height) {
-						// Do nothing
-					} else {
-						// At least one dimension is smaller, so cover needs to size the image
+					// At least one dimension is smaller, so cover needs to size the image
+					if (parent.width > pic_real_width || parent.height > pic_real_height) {
 						if (parent.ratio > ratio) {
 							$this.width(parent.width).height(parent.height * ratio);
 						} else {
 							$this.height(parent.height).width(parent.width * ratio);
 						}
 					}
-					parent.obj.css('overflow', 'hidden');
+					if (hideOverflow) {
+						// Apply overflow-hidden, or it looks ugly
+						parent.obj.css('overflow', 'hidden');
+					}
 				}
 			});
 	};
@@ -116,7 +122,7 @@
 		clearTimeout(resizeTimer);
 		for(var i=0, len = toResize.length; i<len; i++) {
 			var a = toResize[i];
-			resizeTimer = setTimeout(doResize(a.elem, a.type), 100);
+			resizeTimer = setTimeout(doResize(a.elem, a.params), 100);
 		}
 	});
 

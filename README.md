@@ -11,7 +11,7 @@ Usage:
 
 ```
 $('.selector').objectFit('contain');
-$('.selector').objectFit('cover');
+$('.selector').objectFit({type: 'cover', hideOverflow: true}); // hiding overflow is only relevant to cover
 ```
 Image sizes are now re-calculated for the given selectors on browser re-size without you having to do anything.
 
@@ -32,5 +32,4 @@ Originally by [Schmidsi](https://github.com/schmidsi/jquery-object-fit) and re-w
 To do:
 ------
 * Add an object-position polyfill
-* Implement a switch to enable/disable box-sizing style behaviour
 * Add support for all other media types: <video>, <svg> <canvas> and <embed>

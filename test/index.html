@@ -27,15 +27,13 @@
 			width: 200px;
 		}
 
-		.object {
-			background-color: rgba(0, 255, 0, 0.5);
-		}
+		
 	</style>
 
 	<script>
 		$(function() {
 			$('.contain').objectFit('contain');
-			$('.cover').objectFit('cover');
+			$('.cover').objectFit({ type: 'cover', hideOverflow: true});
 		});
 	</script>
 </head>
