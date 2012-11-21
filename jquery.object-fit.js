@@ -57,8 +57,6 @@
 		var type = typeof(params) === 'string' ? params : params.type,
 			hideOverflow = params.hideOverflow === undefined ? true : params.hideOverflow;
 
-			console.log(hideOverflow);
-
 		// Cache the resize request
 		toResize.push({elem: elem, params: {type:type, hideOverflow: hideOverflow}});
 		// Find the first block level element, as we need the containing element, not just the next one up
@@ -79,8 +77,7 @@
 				pic_real_width,
 				pic_real_height;
 
-		$("<img/>") // Make in memory copy of image to avoid css issues
-			.attr("src", $this.attr("src"))
+		var image = $("<img/>") // Make in memory copy of image to avoid css issues
 			.load(function() {
 				pic_real_width = this.width;   // Note: $(this).width() will not
 				pic_real_height = this.height; // work for in memory images.
@@ -114,6 +111,7 @@
 					}
 				}
 			});
+		image.attr("src", $this.attr("src")); // Has to be done outside of assignment for IE
 	};
 
 	$.fn.objectFit = doObjectFit;
@@ -122,7 +120,7 @@
 		clearTimeout(resizeTimer);
 		for(var i=0, len = toResize.length; i<len; i++) {
 			var a = toResize[i];
-			resizeTimer = setTimeout(doResize(a.elem, a.params), 100);
+			resizeTimer = setTimeout(function() { doResize(a.elem, a.params);}, 100);
 		}
 	});
 
