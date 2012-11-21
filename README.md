@@ -4,6 +4,8 @@ jquery object-fit polyfill
 Simple object-fit polyfill for the [CSS3 Images object-fit property](http://www.w3.org/TR/2012/CR-css3-images-20120417/#object-fit).
 It contains a quick feature detection for Opera which supports this property natively.
 
+Read the blog post about this polyfill on [Steve Workman's blog](http://www.steveworkman.com/html5-2/javascript/2012/css3-object-fit-polyfill/)
+
 Read about how CSS3 images works on the [Opera Developer blog](http://dev.opera.com/articles/view/css3-object-fit-object-position/)
 
 Usage:
