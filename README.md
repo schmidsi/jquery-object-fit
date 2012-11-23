@@ -34,4 +34,4 @@ Originally by [Schmidsi](https://github.com/schmidsi/jquery-object-fit) and re-w
 To do:
 ------
 * Add an object-position polyfill
-* Add support for all other media types: <video>, <svg> <canvas> and <embed>
+* Add support for all other media types: &lt;video&gt;, &lt;svg&gt; &lt;canvas&gt; and &lt;embed&gt;
