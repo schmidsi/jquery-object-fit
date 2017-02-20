@@ -1,6 +1,8 @@
 # Warning: This project is outdated and unmaintained
 Unfortunately, I do not find time to maintain this project further because it is also not in use in any of my projects anymore. If someone wants to jump in, feel free to drop me a message and I can give access.
 
+Here is a promising alternative: https://github.com/bfred-it/object-fit-images/ (although, I have not tested it by myself)
+
 jquery object-fit polyfill
 ==========================
 
